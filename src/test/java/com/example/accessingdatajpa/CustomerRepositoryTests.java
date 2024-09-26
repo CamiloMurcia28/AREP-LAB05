@@ -16,6 +16,8 @@
 
 package com.example.accessingdatajpa;
 
+import com.example.accessingdatajpa.repository.CustomerRepository;
+import com.example.accessingdatajpa.model.Customer;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;

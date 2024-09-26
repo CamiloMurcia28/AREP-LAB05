@@ -1,5 +1,7 @@
 package com.example.accessingdatajpa;
 
+import com.example.accessingdatajpa.repository.CustomerRepository;
+import com.example.accessingdatajpa.model.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
