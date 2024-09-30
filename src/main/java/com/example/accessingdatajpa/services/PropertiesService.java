@@ -4,10 +4,24 @@
  */
 package com.example.accessingdatajpa.services;
 
+import java.util.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.example.accessingdatajpa.model.Property;
+import com.example.accessingdatajpa.repository.PropertyRepository;
+
 /**
  *
  * @author camilo.murcia-e
  */
+@Service
 public class PropertiesService {
-    
+
+    public final PropertyRepository propertyRepository;
+
+    @Autowired
+    public PropertiesService(PropertyRepository propertyRepository) {
+        this.propertyRepository = propertyRepository;
+    }
+
 }
