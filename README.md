@@ -105,7 +105,6 @@ To install and run this application locally, follow these steps:
 1. Clone the repository:
 
 ```bash
-mvn clean install
 git clone https://github.com/CamiloMurcia28/AREP-LAB05.git
 cd AREP-LAB05
 ```
@@ -113,7 +112,6 @@ cd AREP-LAB05
 2. Build and run:
 
 ```bash
-Copy code
 mvn clean install
 docker-compose up -d
 mvn spring-boot:run
@@ -177,6 +175,12 @@ Update:
 Delete: 
 ![image](https://github.com/user-attachments/assets/55acaf4b-e7bc-4ddf-8978-37f41ee3a351)
 ![image](https://github.com/user-attachments/assets/6f360e5f-b51f-4fef-aa58-1624cedfe679)
+
+#### Optional Enhancements (for extra credit):
+
+![Recording 2024-10-01 150240](https://github.com/user-attachments/assets/3c8d32c1-a550-4ad0-82ed-dc55799e2ce7)
+
+![image](https://github.com/user-attachments/assets/1df8655c-3f1f-411b-80f4-202398966394)
 
 
 
