@@ -149,6 +149,29 @@ mvn test
 
 ![image](https://github.com/user-attachments/assets/aa106e3d-f528-4d15-953b-5118fcc92b3c)
 
+getPropertyById_Found: Checks that an existing property can be retrieved by its ID.
+getPropertyById_NotFound: Checks that "NOT_FOUND" is returned when searching for a non-existent property.
+createProperty: Tests the creation of a new property.
+updateProperty_Found: Checks the update of an existing property.
+deleteProperty_Found: Checks the deletion of an existing property.
+whenSaveProperty_thenReturnProperty: Tests that a property is successfully saved.
+whenFindById_thenReturnProperty: Checks that a property can be found by its ID.
+whenFindAll_thenReturnPropertyList: Checks that all properties can be retrieved.
+whenDeleteById_thenPropertyShouldNotExist: Checks that a property is successfully deleted by its ID.
+
+These tests cover basic CRUD operations (Create, Read, Update, Delete) for the project.
+
+Create: ![image](https://github.com/user-attachments/assets/7308c5cc-63d2-4193-bcd0-3071d606cebb)
+
+Read: ![image](https://github.com/user-attachments/assets/1ac8cbf3-644a-44c0-81d1-b7543d76fc8f)
+
+Update: ![image](https://github.com/user-attachments/assets/87437762-c1fe-4d15-b8a0-5c6fa6733a35)
+
+Delete: ![image](https://github.com/user-attachments/assets/55acaf4b-e7bc-4ddf-8978-37f41ee3a351)
+![image](https://github.com/user-attachments/assets/6f360e5f-b51f-4fef-aa58-1624cedfe679)
+
+
+
 ## Built With
     * Spring Boot - The backend framework
     * React - The frontend library
