@@ -134,6 +134,10 @@ To deploy the system on AWS:
 5. Start the Spring Boot service on Instance 1
 6. Ensure MySQL is running and properly configured on Instance 2
 
+It's important to know that you must change the application.properties file to adapt it to aws mySQL database:
+
+![Screenshot 2024-09-30 185517](https://github.com/user-attachments/assets/63101708-64e9-4e2b-9359-f12fa4cf1968)
+
 
  ## Deployment Video of the system running
 
@@ -161,13 +165,17 @@ whenDeleteById_thenPropertyShouldNotExist: Checks that a property is successfull
 
 These tests cover basic CRUD operations (Create, Read, Update, Delete) for the project.
 
-Create: ![image](https://github.com/user-attachments/assets/7308c5cc-63d2-4193-bcd0-3071d606cebb)
+Create: 
+![image](https://github.com/user-attachments/assets/7308c5cc-63d2-4193-bcd0-3071d606cebb)
 
-Read: ![image](https://github.com/user-attachments/assets/1ac8cbf3-644a-44c0-81d1-b7543d76fc8f)
+Read: 
+![image](https://github.com/user-attachments/assets/1ac8cbf3-644a-44c0-81d1-b7543d76fc8f)
 
-Update: ![image](https://github.com/user-attachments/assets/87437762-c1fe-4d15-b8a0-5c6fa6733a35)
+Update: 
+![image](https://github.com/user-attachments/assets/87437762-c1fe-4d15-b8a0-5c6fa6733a35)
 
-Delete: ![image](https://github.com/user-attachments/assets/55acaf4b-e7bc-4ddf-8978-37f41ee3a351)
+Delete: 
+![image](https://github.com/user-attachments/assets/55acaf4b-e7bc-4ddf-8978-37f41ee3a351)
 ![image](https://github.com/user-attachments/assets/6f360e5f-b51f-4fef-aa58-1624cedfe679)
 
 
