@@ -139,9 +139,6 @@ To deploy the system on AWS:
 
  [VIDEO AWS EC2](https://youtu.be/qo7sLoDTja4)
    
-
-## Deployment Video:
-
 ## Running Tests
 
 To execute the test: 
@@ -150,8 +147,26 @@ To execute the test:
 mvn test
 ```
 
+## Built With
+    * Spring Boot - The backend framework
+    * React - The frontend library
+    * MySQL - Database
+    * Maven - Dependency Management
+    * npm - Package Manager for JavaScript
+
+## Versioning
+
+![AREP LAB 05](https://img.shields.io/badge/AREP_LAB_04-v1.0.0-blue)
+
 ## Author
 
-- Camilo Murcia Espinosa 
+- Camilo Murcia Espinosa
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) for details
+
+## Acknowledgements
+
+- To Professor [Luis Daniel Benavides Navarro](https://ldbn.is.escuelaing.edu.co) for sharing his knowledge.
 
 
