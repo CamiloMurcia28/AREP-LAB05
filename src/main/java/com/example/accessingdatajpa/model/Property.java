@@ -24,7 +24,7 @@ public class Property {
     private String description;
 
     // Default constructor
-    protected Property() {}
+    public Property() {}
 
     // Constructor with parameters
     public Property(String address, double price, double size, String description) {
