@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import com.example.accessingdatajpa.model.Property;
 import com.example.accessingdatajpa.repository.PropertyRepository;
-import com.example.accessingdatajpa.services.PropertiesService;
 import java.util.List;
 
 /**
@@ -21,47 +20,44 @@ import java.util.List;
 @RequestMapping("/api/properties")
 public class RealStateController {
 
-    //@Autowired
-    //public PropertiesService propertyService;
-
     @Autowired
-    private PropertyRepository propertyRepository;
+    public PropertyRepository propertyService;
 
     @GetMapping
     public List<Property> getAllProperties() {
-        return propertyRepository.findAll();
+        return propertyService.findAll();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Property> getPropertyById(@PathVariable Long id) {
-        return propertyRepository.findById(id)
+        return propertyService.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
     
     @PostMapping
     public Property createProperty(@RequestBody Property property) {
-        return propertyRepository.save(property);
+        return propertyService.save(property);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Property> updateProperty(@PathVariable Long id, @RequestBody Property updatedProperty) {
-        return propertyRepository.findById(id)
+        return propertyService.findById(id)
                 .map(property -> {
                     property.setAddress(updatedProperty.getAddress());
                     property.setPrice(updatedProperty.getPrice());
                     property.setSize(updatedProperty.getSize());
                     property.setDescription(updatedProperty.getDescription());
-                    return ResponseEntity.ok(propertyRepository.save(property));
+                    return ResponseEntity.ok(propertyService.save(property));
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deleteProperty(@PathVariable Long id) {
-        return propertyRepository.findById(id)
+        return propertyService.findById(id)
                 .map(property -> {
-                    propertyRepository.delete(property);
+                    propertyService.delete(property);
                     return ResponseEntity.noContent().build();
                 })
                 .orElse(ResponseEntity.notFound().build());

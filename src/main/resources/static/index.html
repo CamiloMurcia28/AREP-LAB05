@@ -179,6 +179,23 @@
         .error {
             background-color: #e74c3c;
         }
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            display: none;
+            z-index: 1000;
+        }
+        .success {
+            background-color: #2ecc71;
+        }
+        .error {
+            background-color: #e74c3c;
+        }
     </style>
 </head>
 <body>
@@ -187,7 +204,6 @@
             <h1>Dashboard Inmobiliario</h1>
             <nav>
                 <a href="index.html" class="nav-link">Gestión de Propiedades</a>
-                <a href="statistics.html" class="nav-link">Estadísticas</a>
             </nav>
         </aside>
         <main class="main-content">
@@ -263,6 +279,8 @@
         </div>
     </div>
 
+    <div id="notification" class="notification"></div>
+
     <script>
         
         let currentPage = 1;
@@ -275,20 +293,81 @@
         const closeBtn = document.getElementsByClassName('close')[0];
         const propertyForm = document.getElementById('propertyForm');
         
-
         async function fetchProperties() {
             try {
                 const response = await fetch('/api/properties');
+                if (!response.ok) throw new Error('Error fetching properties');
                 properties = await response.json();
                 filteredProperties = [...properties];
                 updateStatistics();
                 updatePropertiesTable();
+                showNotification('Propiedades cargadas con éxito', true);
             } catch (error) {
                 console.error('Error fetching properties:', error);
+                showNotification('Error al cargar las propiedades', false);
+            }
+        }
+
+        function showNotification(message, isSuccess = true) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${isSuccess ? 'success' : 'error'}`;
+            notification.style.display = 'block';
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+
+        async function addProperty(propertyData) {
+            try {
+                const response = await fetch('/api/properties', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(propertyData),
+                });
+                if (!response.ok) throw new Error('Error adding property');
+                showNotification('Propiedad añadida con éxito', true);
+            } catch (error) {
+                console.error('Error:', error);
+                showNotification('Error al añadir la propiedad', false);
+            }
+        }
+
+        async function updateProperty(propertyData) {
+            try {
+                const response = await fetch(`/api/properties/${propertyData.id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(propertyData),
+                });
+                if (!response.ok) throw new Error('Error updating property');
+                showNotification('Propiedad actualizada con éxito', true);
+            } catch (error) {
+                console.error('Error:', error);
+                showNotification('Error al actualizar la propiedad', false);
+            }
+        }
+
+        async function deleteProperty(id) {
+            if (confirm('¿Está seguro de que desea eliminar esta propiedad?')) {
+                try {
+                    const response = await fetch(`/api/properties/${id}`, {
+                        method: 'DELETE',
+                    });
+                    if (!response.ok) throw new Error('Error deleting property');
+                    showNotification('Propiedad eliminada con éxito', true);
+                    fetchProperties();
+                } catch (error) {
+                    console.error('Error:', error);
+                    showNotification('Error al eliminar la propiedad', false);
+                }
             }
         }
         
-       
         async function updatePropertiesTable() {
             const tbody = document.querySelector('#propertiesTable tbody');
             tbody.innerHTML = '';
@@ -315,6 +394,13 @@
             });
 
             updatePagination();
+        }
+
+        async function editProperty(id) {
+            const property = properties.find(p => p.id == id);
+            if (property) {
+                openModal('Editar Propiedad', property);
+            }
         }
         
         function updateStatistics() {
@@ -372,57 +458,6 @@
             closeModal();
             fetchProperties();
         };
-
-        async function addProperty(propertyData) {
-            try {
-                const response = await fetch('/api/properties', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(propertyData),
-                });
-                if (!response.ok) throw new Error('Error adding property');
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        }
-
-        async function updateProperty(propertyData) {
-            try {
-                const response = await fetch(`/api/properties/${propertyData.id}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(propertyData),
-                });
-                if (!response.ok) throw new Error('Error updating property');
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        }
-
-        async function deleteProperty(id) {
-            if (confirm('¿Está seguro de que desea eliminar esta propiedad?')) {
-                try {
-                    const response = await fetch(`/api/properties/${id}`, {
-                        method: 'DELETE',
-                    });
-                    if (!response.ok) throw new Error('Error deleting property');
-                    fetchProperties();
-                } catch (error) {
-                    console.error('Error:', error);
-                }
-            }
-        }
-        
-        async function editProperty(id) {
-            const property = properties.find(p => p.id == id);
-            if (property) {
-                openModal('Editar Propiedad', property);
-            }
-        }
 
         function updatePagination() {
             const totalPages = Math.ceil(filteredProperties.length / itemsPerPage);

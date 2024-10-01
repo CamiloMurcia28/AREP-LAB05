@@ -7,6 +7,7 @@ package com.example.accessingdatajpa.services;
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.example.accessingdatajpa.model.Property;
 import com.example.accessingdatajpa.repository.PropertyRepository;
 
@@ -23,5 +24,10 @@ public class PropertiesService {
     public PropertiesService(PropertyRepository propertyRepository) {
         this.propertyRepository = propertyRepository;
     }
+
+    public List<Property> findAll(){
+        return this.propertyRepository.findAll();
+    }
+    
 
 }
