@@ -68,6 +68,23 @@ The interaction between the system components follows a clear flow:
 
 3. Database (MySQL): The backend communicates with the MySQL database hosted on EC2 instance 2, where all property data is stored. CRUD operations are performed on the properties table, and the results are sent back to the backend, which in turn responds to the frontend, updating the user interface as necessary.
 
+### Architecture Diagram
+```mermaid
+graph TD
+    Client_Browser[Client Browser HTML/JS] -->|HTTP/HTTPS| EC2_Instance_1[EC2 Instance 1]
+    EC2_Instance_1 --> Spring_Boot_API[Spring Boot API]
+    Spring_Boot_API --> Property_Controller[Property Controller]
+    Property_Controller --> Service_Layer[Service Layer]
+    Service_Layer --> Property_Service[Property Service]
+    Property_Service --> Data_Access[Data Access]
+    Data_Access --> Property_Repository[Property Repository]
+    Property_Repository --> JPA[ JPA / Hibernate]
+    JPA --> EC2_Instance_2[EC2 Instance 2]
+    EC2_Instance_2 --> MySQL[MySQL Database]
+    MySQL -->|Data Storage| MySQL_DB[(MySQL)]
+```
+
+
 ## Class Design
 
 Key classes in the system include:
@@ -117,26 +134,11 @@ To deploy the system on AWS:
 5. Start the Spring Boot service on Instance 1
 6. Ensure MySQL is running and properly configured on Instance 2
 
-### Architecture Diagram
-```mermaid
-graph TD
-Client Browser HTML/CSS/JS -->|HTTP/HTPPS| ClientHandler
-App -->|Interacts with| MedAppointmentService
-App -->|Interacts with| SparkServer
 
-subgraph Request Processing
-        ClientHandler -->|Processes Service Calls| callService
-	ClientHandler -->|Handles GET| handleGetRequest
-        Spring -->|Loads Components| ComponentLoader
-	Spring -->|Finds| Method
-end
+ ## Deployment Video of the system running
 
-ListAppointmentService -->|Relies on| MedAppointmentService
-MedAppointmentService -->|Administers| MedAppointment
-SparkServer -->|POST Routes| AddMedAppointmentService
-SparkServer -->|GET Routes| ListAppointmentService
-AddMedAppointmentService -->|Relies on| MedAppointmentService
-```
+ [VIDEO AWS EC2](https://youtu.be/qo7sLoDTja4)
+   
 
 ## Deployment Video:
 
