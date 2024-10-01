@@ -147,6 +147,8 @@ To execute the test:
 mvn test
 ```
 
+![image](https://github.com/user-attachments/assets/aa106e3d-f528-4d15-953b-5118fcc92b3c)
+
 ## Built With
     * Spring Boot - The backend framework
     * React - The frontend library
