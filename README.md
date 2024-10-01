@@ -156,14 +156,16 @@ mvn test
 
 ## Versioning
 
-![AREP LAB 05](https://img.shields.io/badge/AREP_LAB_04-v1.0.0-blue)
+![AREP LAB 05](https://img.shields.io/badge/AREP_LAB_05-v1.0.0-blue)
 
 ## Author
 
 - Camilo Murcia Espinosa
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) for details
+
+[![License: CC BY-SA 4.0](https://licensebuttons.net/l/by-sa/4.0/88x31.png)](https://creativecommons.org/licenses/by-sa/4.0/deed.es)
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) for details
 
 ## Acknowledgements
 
